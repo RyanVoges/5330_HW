@@ -1,0 +1,287 @@
+---
+title: "Chapter 1 - Financial Asset Prices and Returns" 
+subtitle: "Finance 5330: Financial Econometrics" 
+author: Tyler J. Brough
+institute: Department of Finance and Economics 
+titlegraphic: ./images/vertical-logo-blue.png
+fontsize: 10pt
+output:
+ beamer_presentation:
+    template: ./template.tex
+    keep_tex: true
+ # toc: false
+    slide_level: 2
+make149: true
+---
+
+
+# Notes on Chapter 01 - Financial Asset Prices and Returns
+
+## Section 1.1: What is Financial Econometrics?
+
+- No simple definition
+
+- Data analysis for finance/economics (we will be reading Tukey's paper later)
+
+- Empirical implementation of financial models (ex: CAPM)
+
+- Methods of estimation and inference
+
+- Forecasting, policy analysis, academic understanding of financial market phenomena
+
+- Draws on finance/economics, probability, statistics, applied math
+
+- Connections to ML & AI
+
+- Basics: Finance Theory + Data Analysis
+
+
+## Section 1.2: Financial Assets
+
+- Fixed income
+
+- Equity
+
+- Derivatives
+
+- Cash flows generated from these securities/contracts (streams of cash flows)
+
+\vspace{10mm}
+
+- Cash: claim on stream of services that it can secure by virtue of its role as a medium of exchange
+	- Ludwig von Mises on the evolution of money
+	- Cash is a kind of derivative security that derives its value from the opportunity cost of goods and services
+	- Exchange rates between currencies (foreign exchange markets are the largest financial markets in the world)
+
+
+## Fixed-Income Securities
+
+- Two streams of cash flows
+	- Stream of coupon payments made at regular fixed intervals
+	- The eventual return of principal at maturity
+	- Financial innovation is a major factor in these markets
+	- (the original term fixed-income came from the simplest forms. Subsequent forms are much more sophisticated)
+
+- Money Markets
+	- Short-term, very liquid
+		- Treasury bills: simplest form of government debt (3,6,9 month maturities | pure discount bonds)
+	- Eurodollar deposits: deposits of US banks held in financial institutions outside the US denominated in USD.
+
+
+## 
+
+- Bond markets
+	- Government bonds (e.g. US Treasury) (often zero-coupon or pure discount)
+	- Corporate bonds (e.g. CAT)
+		- Typically coupon-paying bonds
+
+- Equity Securities
+	- Common stock: give the owner an equity stake in the assets of the company and it's earnings
+		- (call option on assets w/ K = face value of liabilities)
+	- Dividends: payments representing distribution of company earnings
+	- Dividend yield: $ amount per share, or as a percentage of current market price
+
+
+## 
+
+- Derivative contracts
+	- "Derive" their value from a reference asset (called the underlying or spot)
+	- Payoff based on an underlying asset (commodities, stocks, interest, rates, etc)
+
+\vspace{10mm}
+
+- Two main classes:
+	- (1) options: 
+		- Call: the right, but not the obligation, to buy an underlying asset at a predetermined price (strike) at a predetermined time (expiry)
+		- Put: the right, but not the obligation, to sell an underlying asset at a strike price at expiry
+	- (2) futures: specify delivery of an asset (or cash value equivalent) at a time known as maturity for an agreed upon price (payable at maturity)
+		- Long futures (person buying / taking delivery)
+		- Short futures (person selling / making delivery)
+
+
+## Section 1.3: Equity Prices & Returns
+
+- Prices: represent the most basic type of data for financial econometrics
+	- Quoted bid/ask prices
+	- Historical transaction prices
+	- Frequency
+		- High: intraday (sub-second time resolution)
+		- Medium: daily, weekly, 
+		- Low: monthly, quarterly, annual
+
+
+## Hayek on the Informational Role of Prices
+
+- AER 1945 article titled "The Use of Knowledge in Society"
+- Prices convey information
+	- CME closing due to flooding (grain elevators would not quote prices)
+	- Roll on weather and OJ futures
+	- Armen Alchian on stocks who were contractors to build the first atomic bomb
+
+
+- Prices are what we want to work with, but they present very challenging statistical problems (nonstationarity)
+	- Project II focuses on one particular econometric technique (cointegration and error-correction) that powerfully overcomes these problems
+
+
+## Section 1.3.2 Returns
+
+- Dollar returns
+
+$$
+\$R_{kt} = P_{t} - P_{t-k}
+$$
+
+
+- where $P_{t}$ is the price at time $t$ and $P_{t-k}$ is the price at $t-k$ ($k$ is the length of the period)
+- Problems:
+	- Not scale-free (still in $\$$ terms)
+	- Not proportional to initial investment
+
+
+##
+
+- Simple returns
+
+$$
+R_{t} = \frac{P_{t} - P_{t-1}}{P_{t-1}} = \frac{P_{t}}{P_{t-1}} - 1
+$$
+
+- where $\frac{P_{t}}{P_{t-1}}$ is the price relative quotient (or gross return)
+
+
+## 
+
+- Note that:
+
+$$
+1 + R_{t} = \frac{P_{t}}{P_{t-1}}
+$$
+
+- Represents the value of investing $\$1$ at $t-1$ from perspective of $t$
+
+\vspace{8mm}
+
+- Holding period return $R_{t}(k)$ is given by
+
+$$
+\begin{aligned}
+R_{t}(k) &= \frac{P_{t}}{P_{t-1}} - 1 \\
+         &= \frac{P_{t}}{P_{t-1}} \times \frac{P_{t-1}}{P_{t-2}} \times \cdots \times \frac{P_{t-k+2}}{P_{t-k+1}} \times \frac{P_{t-k+1}}{P_{t-k}} - 1 \\
+		 &= (1 + R_{t}) \times (1 + R_{t-1}) \times \cdots \times (1 + R_{t-k+2}) \times (1 + R_{t-k+2}) \times (1 + R_{t-k+1}) - 1 \\
+		 &= \left[ \prod_{j=0}^{k-1} (1 + R_{t-j}) \right] - 1
+\end{aligned}
+$$
+
+
+## 
+
+Ex: If the frequency is monthly, then the simple return for a holding period of 1 year is given by
+
+$$
+R_{t}(12) = \left[\prod_{j=0}^{11} (1 + R_{t-j}) \right] - 1
+$$
+
+\vspace{10mm}
+
+- The annualized return $R_{t}(12) = (1 + R_{t})^{12} - 1$
+
+
+## Log Returns
+
+- The log return of an asset is defined as 
+
+$$
+r_{t} = \log{(1 + R_{t})} = \log{P_{t-}} - \log{P_{t-1}} 
+$$
+
+\vspace{8mm}
+
+- Log returns are continuously compounded returns
+
+- Note: $\log_{e}(\cdot) = \ln{(\cdot)}$ (natural logarithm)
+
+- Loenhard Euler (1707 - 1783)
+
+$$
+e \equiv \lim_{s \rightarrow \infty} (1 + \frac{1}{s})^{s} \approx 2.71828
+$$
+
+- So called _natural expotential_ (and _natural log_) because $e$ is the natural limit of this quantity 
+- Demo in Julia
+
+
+## 
+
+- The limit formula represents the value of an account at the end of the year that started with $\$1$ and paid $100\%$ interest per year but with the interest compounded
+  continuously over time rather than at discrete intervals (i.e. at every infinitesimal increment of time)
+
+\vspace{10mm}
+
+- If $m$ is the compounding period and $r_{t}$ the return, then 
+
+$$
+P_{t} = P_{t-1} \left(1 + \frac{r_{t}}{m}\right)^{m}
+$$
+
+- Continuous compounding is produced when $m \rightarrow \infty$
+
+
+$$
+P_{t} = P_{t-1} \lim_{m \rightarrow \infty} \left(1 + \frac{r_{t}}{m}\right)^{m}
+$$
+
+
+## 
+
+- Let $s = \frac{m}{r_{t}}$, then we can rewrite this as 
+
+$$
+\begin{aligned}
+P_{t} &= P_{t-1} \lim_{s \rightarrow \infty} \left[ \left(1 + \frac{1}{s} \right)^{s r_{t}} \right] \\
+      &= P_{t-1} \left[ \lim_{s \rightarrow \infty} \left(1 + \frac{1}{s} \right)^{s} \right]^{r_{t}} \\
+	  &= P_{t-1} e^{r_{t}}
+\end{aligned}
+$$
+
+
+## 
+
+- Note: $\ln{(\cdot)}$ is the inverse of $\exp{(\cdot)}$, so taking logs gives us
+
+$$
+\begin{aligned}
+e^{r_{t}}        &= \frac{P_{t}}{P_{t-1}} \\
+\ln{(e^{r_{t}})} &= \ln{\left(\frac{P_{t}}{P_{t-1}}\right)} \\
+r_{t}            &= \ln{(P_{t})} - \ln{(P_{t-1})} \\
+\end{aligned}
+$$
+
+
+- (So we've come full circle)
+
+
+## 
+
+- Log returns are especially useful for multiperiod calculations because products become sums
+
+
+- Example: 
+
+$$
+\begin{aligned}
+R_{t}(2) &= \log{(P_{t})} - \log{(P_{t-2})} \\
+         &= \left[ \log{(P_{t})} - \log{(P_{t-1})} \right] + \left[\log{(P_{t-1})} - \log{(P_{t-2})} \right] \\
+		 &= r_{t} + r_{t-1} 
+\end{aligned}
+$$
+
+
+- The $k$-period return (by extension) is
+
+$$
+\begin{aligned}
+r_{t}(k) &= \log{(P_{t})} - \log{(P_{t-k})} \\
+         &= r_{t} + r_{t-1} + \cdots + r_{t-(k-1)} \\
+		 &= \sum_{j=0}^{k-1} r_{t-j} \quad \mbox{(i.e. sum of single-period log returns)} \\
+\end{aligned}
+$$

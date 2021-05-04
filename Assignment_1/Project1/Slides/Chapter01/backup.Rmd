@@ -1,0 +1,125 @@
+---
+title: "Chapter 1 - Financial Asset Prices and Returns" 
+subtitle: "Finance 5330: Financial Econometrics" 
+author: Tyler J. Brough
+institute: Department of Finance and Economics 
+titlegraphic: ./images/vertical-logo-blue.png
+fontsize: 10pt
+output:
+ beamer_presentation:
+    template: ./template.tex
+    keep_tex: true
+ # toc: false
+    slide_level: 2
+make149: true
+---
+
+
+# Notes on Chapter 01 - Financial Asset Prices and Returns
+
+## Section 1.1: What is Financial Econometrics?
+
+- No simple definition
+
+- Data analysis for finance/economics (we will be reading Tukey's paper later)
+
+- Empirical implementation of financial models (ex: CAPM)
+
+- Methods of estimation and inference
+
+- Forecasting, policy analysis, academic understanding of financial market phenomena
+
+- Draws on finance/economics, probability, statistics, applied math
+
+- Connections to ML & AI
+
+- Basics: Finance Theory + Data Analysis
+
+
+## Section 1.2: Financial Assets
+
+- Fixed income
+
+- Equity
+
+- Derivatives
+
+- Cash flows generated from these securities/contracts (streams of cash flows)
+
+\vspace{10mm}
+
+- Cash: claim on stream of services that it can secure by virtue of its role as a medium of exchange
+	- Ludwig von Mises on the evolution of money
+	- Cash is a kind of derivative security that derives its value from the opportunity cost of goods and services
+	- Exchange rates between currencies (foreign exchange markets are the largest financial markets in the world)
+
+
+## Fixed-Income Securities
+
+- Two streams of cash flows
+	- Stream of coupon payments made at regular fixed intervals
+	- The eventual return of principal at maturity
+	- Financial innovation is a major factor in these markets
+	- (the original term fixed-income came from the simplest forms. Subsequent forms are much more sophisticated)
+
+- Money Markets
+	- Short-term, very liquid
+		- Treasury bills: simplest form of government debt (3,6,9 month maturities | pure discount bonds)
+	- Eurodollar deposits: deposits of US banks held in financial institutions outside the US denominated in USD.
+
+
+## 
+
+- Bond markets
+	- Government bonds (e.g. US Treasury) (often zero-coupon or pure discount)
+	- Corporate bonds (e.g. CAT)
+		- Typically coupon-paying bonds
+
+- Equity Securities
+	- Common stock: give the owner an equity stake in the assets of the company and it's earnings
+		- (call option on assets w/ K = face value of liabilities)
+	- Dividends: payments representing distribution of company earnings
+	- Dividend yield: $ amount per share, or as a percentage of current market price
+
+
+## 
+
+Derivative contracts
+
+- "Derive" their value from a reference asset (called the underlying or spot)
+- Payoff based on an underlying asset (commodities, stocks, interest, rates, etc)
+- Two main classes:
+	- (1) options: 
+		- Call: the right, but not the obligation, to buy an underlying asset at a predetermined price (strike) at a predetermined time (expiry)
+		- Put: the right, but not the obligation, to sell an underlying asset at a strike price at expiry
+	- (2) futures: specify delivery of an asset (or cash value equivalent) at a time known as maturity for an agreed upon price (payable at maturity)
+		- Long futures (person buying / taking delivery)
+		- Short futures (person selling / making delivery)
+
+
+## Section 1.3: Equity Prices & Returns
+
+- Prices: represent the most basic type of data for financial econometrics
+	- Quoted bid/ask prices
+	- Historical transaction prices
+
+- Frequency
+	- High: intraday (sub-second time resolution)
+	- Medium: daily, weekly, 
+	- Low: monthly, quarterly, annual
+
+
+## Hayek on the Informational Role of Prices
+
+- AER 1945 article titled "The Use of Knowledge in Society"
+- Prices convey information
+	- CME closing due to flooding (grain elevators would not quote prices)
+	- Roll on weather and OJ futures
+	- Armen Alchian on stocks who were contractors to build the first atomic bomb
+
+
+- Prices are what we want to work with, but they present very challenging statistical problems (nonstationarity)
+	- Project II focuses on one particular econometric technique (cointegration and error-correction) that powerfully overcomes these problems
+
+
+

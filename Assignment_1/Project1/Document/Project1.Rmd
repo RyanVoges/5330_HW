@@ -1,0 +1,41 @@
+---
+title: "Linear Regression, Loss Functions, and Futures Hedging"
+subtitle: "Finance 5330: Project 1"
+author: Tyler J. Brough
+output: pdf_document
+---
+
+## Introduciton 
+
+This exercise calls for the preparation of a case study of a hedging problem. The various parts of 
+the exercise below will ask you to pose a simple, perhaps imaginary, hedging scenario, to collect
+appropriate data, to analyze the data statistically, and to recommend a hedge. 
+
+\vspace{10mm}
+
+* __(a)__ _Description of Scenario:_ In 100 words or less, describe the scenario: "Who is hedging
+  how much of what at what data, and why?" Suggest the futures contract or contracts that you will
+  consider, and why. Your analysis should cover a hedge for a specific time period (like over the next 30
+  days) as well as a stack-and-roll scenario (like rebalancing the hedge monthly for the next 5 years).
+
+
+* __(b)__ _Data Collection:_ Collect your data for the hedging problem. Supply, with your assignment,
+  at least 26 observations on each of the prices or other quantities of interest. Attached, are some
+  example data for heating oil spot and futures obtained from the US Energy Information Administration (EIA).
+  See here: <https://www.eia.gov/petroleum/data.php#prices>. You may use Bloomberg or any other source of data.
+  (If you are having trouble with this, plese contact me and I will assist you.)
+
+
+* __(c)__ _Data Analysis:_ Using statistical methods, analyze the data for a reasonable estimate of the 
+  risk-minimizing futures position(s). You may wish to analyze both price increments and log-price increments,
+  suggesting which one of these approaches may lead to a better hedging estimate (if either), and why you think 
+  so.
+
+* __(d)__ _Hedge Recommendation:_ Based on your analysis, and on any other reasoning that you may wish to supply,
+  recommend a hedge. State precisely the timing and quantities involved in your hedging strategy, as though they
+  are instructions to the broker. 
+
+\vspace{10mm}
+
+The deliverable for your project is either a GitHub repository or a zip file containing the various resources for
+your project (data files, code files, Jupyter notebooks, narratives, etc). 
